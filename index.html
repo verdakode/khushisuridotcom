@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>khushi</title>
+    <title>khushi - investing × art × music</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
 
@@ -17,9 +17,11 @@
         :root {
             --color-bg: #0D0D0D;
             --color-text: #F2F2F2;
-            --color-accent1: #E07A5F;
-            --color-accent2: #81B29A;
-            --color-accent3: #F2CC8F;
+            --color-coral: #ff7b5f;
+            --color-sage: #8ec9a0;
+            --color-yellow: #f8d48a;
+            --color-blue: #6b9ac4;
+            --color-pink: #ffb5a8;
         }
 
         body {
@@ -51,11 +53,22 @@
         }
 
         .hero {
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             padding: 4rem 0;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
         .name {
@@ -63,12 +76,94 @@
             font-weight: 700;
             line-height: 0.9;
             margin-bottom: 2rem;
-            background: linear-gradient(45deg, var(--color-accent1), var(--color-accent2), var(--color-accent3));
+            background: linear-gradient(45deg, var(--color-coral), var(--color-sage), var(--color-yellow), var(--color-blue), var(--color-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: blur(0.3px);
         }
 
+        .titles {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        .title-item {
+            display: inline-block;
+            margin-right: 1rem;
+            position: relative;
+        }
+
+        .title-item::after {
+            content: "×";
+            margin-left: 1rem;
+            opacity: 0.5;
+        }
+
+        .title-item:last-child::after {
+            display: none;
+        }
+
+        .hero-image {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+            background: linear-gradient(45deg, var(--color-coral), var(--color-sage), var(--color-yellow), var(--color-blue), var(--color-pink));
+            border-radius: 50%;
+            overflow: hidden;
+            opacity: 0.8;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .cta {
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .link {
+            color: var(--color-text);
+            text-decoration: none;
+            position: relative;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .link::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .sections {
+            padding: 8rem 0;
+        }
+
+        /* New Tab Styles */
         .tabs {
             display: flex;
             gap: 3rem;
@@ -98,7 +193,7 @@
             left: 0;
             width: 100%;
             height: 1px;
-            background: var(--color-accent2);
+            background: var(--color-sage);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -128,27 +223,6 @@
             opacity: 0.8;
         }
 
-        .subtle-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 4rem;
-            padding-top: 4rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .subtle-link {
-            color: var(--color-text);
-            text-decoration: none;
-            opacity: 0.3;
-            transition: opacity 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .subtle-link:hover {
-            opacity: 1;
-        }
-
         .writing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -170,7 +244,7 @@
 
         .writing-date {
             font-size: 0.9rem;
-            color: var(--color-accent2);
+            color: var(--color-sage);
             margin-bottom: 1rem;
         }
 
@@ -210,9 +284,64 @@
             transform: scale(1.05);
         }
 
+        .contact {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 8rem;
+        }
+
+        .contact-text {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .marquee {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            background: var(--color-bg);
+            padding: 1rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-item {
+            padding: 0 2rem;
+            color: var(--color-yellow);
+            opacity: 0.7;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .name {
                 font-size: 4rem;
+            }
+
+            .titles {
+                font-size: 1.2rem;
             }
 
             .tabs {
@@ -230,74 +359,111 @@
 
     <main class="container">
         <section class="hero">
-            <h1 class="name">khushi</h1>
+            <div class="hero-content">
+                <div class="hero-grid">
+                    <div>
+                        <h1 class="name">khushi</h1>
+                        <div class="titles">
+                            <span class="title-item">investor</span>
+                            <span class="title-item">fine art</span>
+                            <span class="title-item">music mgmt</span>
+                        </div>
+                        <div class="cta">
+                            investing in extraordinary early stage founders.<br>
+                            bridging tech × art × music.
+                        </div>
+                        <div class="links">
+                            <a href="https://twitter.com/khushkhushkhush" class="link">𝕏</a>
+                            <a href="https://instagram.com/khushsur" class="link">instagram</a>
+                            <a href="mailto:hey@khushi.xyz" class="link">email</a>
+                        </div>
+                    </div>
+                    <div class="hero-image"></div>
+                </div>
+            </div>
         </section>
 
-        <div class="tabs">
-            <a href="#about" class="tab active">about</a>
-            <a href="#writing" class="tab">writing</a>
-            <a href="#camera" class="tab">camera roll</a>
-        </div>
+        <div class="sections">
+            <div class="tabs">
+                <a href="#about" class="tab active">about</a>
+                <a href="#writing" class="tab">writing</a>
+                <a href="#camera" class="tab">camera roll</a>
+            </div>
 
-        <div id="about" class="content-section active">
-            <div class="about-section">
-                <div class="about-text">
-                    based in san francisco, exploring the intersections of art, music, and human connection. fascinated by the ways technology shapes our creative expression and how we build meaningful communities in digital spaces.
-                </div>
-                <div class="about-text">
-                    currently writing about culture, technology, and the beautiful moments that happen in between. collecting memories through my lens and sharing stories that matter.
-                </div>
-                <div class="subtle-links">
-                    <a href="https://linkedin.com/in/khushisuri" class="subtle-link">linkedin</a>
-                    <a href="https://twitter.com/khushkhushkhush" class="subtle-link">𝕏</a>
-                    <a href="https://instagram.com/khushsur" class="subtle-link">instagram</a>
+            <div id="about" class="content-section active">
+                <div class="about-section">
+                    <div class="about-text">
+                        based in san francisco, exploring the intersections of art, music, and human connection. fascinated by the ways technology shapes our creative expression and how we build meaningful communities in digital spaces.
+                    </div>
+                    <div class="about-text">
+                        currently writing about culture, technology, and the beautiful moments that happen in between. collecting memories through my lens and sharing stories that matter.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="writing" class="content-section">
-            <div class="writing-grid">
-                <div class="writing-item">
-                    <div class="writing-date">dec 29</div>
-                    <h3 class="writing-title">The Poetry of Code</h3>
-                    <p class="writing-preview">exploring the artistry in the way we write code, where functionality meets creative expression.</p>
-                </div>
-                <div class="writing-item">
-                    <div class="writing-date">dec 27</div>
-                    <h3 class="writing-title">Late Night Jazz & City Lights</h3>
-                    <p class="writing-preview">thoughts on san francisco after midnight, fog rolling in, and the sound of jazz from hidden venues.</p>
-                </div>
-                <div class="writing-item">
-                    <div class="writing-date">dec 25</div>
-                    <h3 class="writing-title">Art in the Age of AI</h3>
-                    <p class="writing-preview">navigating the intersection of artificial intelligence and human creativity.</p>
+            <div id="writing" class="content-section">
+                <div class="writing-grid">
+                    <div class="writing-item">
+                        <div class="writing-date">dec 29</div>
+                        <h3 class="writing-title">The Poetry of Code</h3>
+                        <p class="writing-preview">exploring the artistry in the way we write code, where functionality meets creative expression.</p>
+                    </div>
+                    <div class="writing-item">
+                        <div class="writing-date">dec 27</div>
+                        <h3 class="writing-title">Late Night Jazz & City Lights</h3>
+                        <p class="writing-preview">thoughts on san francisco after midnight, fog rolling in, and the sound of jazz from hidden venues.</p>
+                    </div>
+                    <div class="writing-item">
+                        <div class="writing-date">dec 25</div>
+                        <h3 class="writing-title">Art in the Age of AI</h3>
+                        <p class="writing-preview">navigating the intersection of artificial intelligence and human creativity.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="camera" class="content-section">
-            <div class="camera-roll">
-                <div class="photo-item">
-                    <img src="/api/placeholder/300/400" alt="SF Moments">
-                </div>
-                <div class="photo-item">
-                    <img src="/api/placeholder/300/400" alt="Art Installation">
-                </div>
-                <div class="photo-item">
-                    <img src="/api/placeholder/300/400" alt="City Vibes">
-                </div>
-                <div class="photo-item">
-                    <img src="/api/placeholder/300/400" alt="Music Scene">
-                </div>
-                <div class="photo-item">
-                    <img src="/api/placeholder/300/400" alt="Gallery Opening">
-                </div>
-                <div class="photo-item">
-                    <img src="/api/placeholder/300/400" alt="Street Art">
+            <div id="camera" class="content-section">
+                <div class="camera-roll">
+                    <div class="photo-item">
+                        <img src="/api/placeholder/300/400" alt="SF Moments">
+                    </div>
+                    <div class="photo-item">
+                        <img src="/api/placeholder/300/400" alt="Art Installation">
+                    </div>
+                    <div class="photo-item">
+                        <img src="/api/placeholder/300/400" alt="City Vibes">
+                    </div>
+                    <div class="photo-item">
+                        <img src="/api/placeholder/300/400" alt="Music Scene">
+                    </div>
+                    <div class="photo-item">
+                        <img src="/api/placeholder/300/400" alt="Gallery Opening">
+                    </div>
+                    <div class="photo-item">
+                        <img src="/api/placeholder/300/400" alt="Street Art">
+                    </div>
                 </div>
             </div>
+
+            <section class="contact">
+                <div class="contact-text">
+                    building something interesting?<br>
+                    let's chat.
+                </div>
+                <div class="contact-links">
+                    <a href="https://twitter.com/messages/compose?recipient_id=khushkhushkhush" class="link">dm on 𝕏</a>
+                    <a href="mailto:hey@khushi.xyz" class="link">send email</a>
+                </div>
+            </section>
         </div>
     </main>
+
+    <div class="marquee">
+        <div class="marquee-content">
+            <span class="marquee-item">sf based × investing at @a_starvc × fine art + music mgmt × </span>
+            <span class="marquee-item">sf based × investing at @a_starvc × fine art + music mgmt × </span>
+            <span class="marquee-item">sf based × investing at @a_starvc × fine art + music mgmt × </span>
+        </div>
+    </div>
 
     <script>
         document.querySelectorAll('.tab').forEach(tab => {
@@ -317,4 +483,3 @@
         });
     </script>
 </body>
-</html>
